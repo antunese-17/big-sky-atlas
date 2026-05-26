@@ -19,7 +19,7 @@ export function Footer() {
   const emailHref = `mailto:${SITE.email}`;
 
   return (
-    <footer className="bg-bsa-pinheiro px-10 py-[96px] text-bsa-papel">
+    <footer className="bg-[#040a12] px-10 py-[96px] text-bsa-papel">
       <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <p className="font-technical text-[16px] uppercase tracking-[0.22em]">
