@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --papel: #faf8f4;
+  --brasa: #c02b0a;
+  --lanterna: #f6c67f;
+  --noite: #1a2638;
+  --noite-deep: #040a12;
+  --ink: #18140f;
+}
+
+@layer base {
+  html {
+    scroll-behavior: auto;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  html,
+  body {
+    @apply bg-bsa-papel text-bsa-carvao;
+  }
+
+  body {
+    @apply font-body;
+    font-weight: 400;
+    overscroll-behavior-y: none;
+  }
+
+  ::selection {
+    background-color: rgb(192 43 10 / 0.2);
+    color: #141414;
+  }
+
+  :focus-visible {
+    outline: 2px solid #c02b0a;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #faf8f4;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #a8ada7;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #141414;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #a8ada7 #faf8f4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.pswp {
+  --pswp-bg: #141414;
+}
+
+.pswp__button {
+  color: #faf8f4;
+}
+
+.pswp__counter {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+/* ─── Form input base ────────────────────────────────────────── */
+@layer components {
+  .bsa-input {
+    @apply w-full rounded-[4px] border border-[#d4cfc8] bg-white px-4 py-3;
+    @apply font-body text-[15px] text-bsa-carvao placeholder:text-bsa-granito;
+    @apply outline-none transition-all duration-200;
+    @apply focus:border-bsa-carvao focus:ring-1 focus:ring-bsa-carvao;
+    appearance: none;
+  }
+}

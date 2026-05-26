@@ -1,0 +1,703 @@
+/* Big Sky Atlas — /expeditions page styles
+ * Scoped under .expeditions-root to avoid leaking outside the page.
+ * Prototype's nav and footer rules dropped — global chrome handles them.
+ * :root vars (--papel, --brasa, --lanterna, --noite, --noite-deep) come
+ * from globals.css. Global * reset and html/body base from Tailwind Preflight.
+ */
+
+.expeditions-root {
+  padding: 100px 0 60px;
+  background: var(--papel);
+  color: var(--noite-deep);
+  font-family: "Satoshi", sans-serif;
+  font-weight: 400;
+}
+.expeditions-root a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ══════════════════════════════════════════════
+   TRAIL CARDS — static vertical stack
+   ══════════════════════════════════════════════ */
+.expeditions-root .cards-stack {
+  padding: 0 40px;
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.expeditions-root .trail-block {
+  position: relative;
+  border-radius: 18px;
+  border: 0.5px solid rgba(26, 38, 56, 0.1);
+  overflow: hidden;
+  background: var(--papel);
+  box-shadow: 0 4px 24px rgba(26, 38, 56, 0.08);
+  display: flex;
+  flex-direction: row;
+}
+.expeditions-root .trail-sticky {
+  display: contents;
+}
+.expeditions-root .trail-top {
+  display: contents;
+}
+.expeditions-root .trail-left {
+  flex: 1;
+  padding: 40px 48px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  order: 1;
+}
+.expeditions-root .trail-day-carousel {
+  position: relative;
+  height: 180px;
+  flex-shrink: 0;
+}
+.expeditions-root .trail-day {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.expeditions-root .trail-day.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.expeditions-root .trail-day-overline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: "Khand", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: rgba(246, 198, 127, 1);
+  margin-bottom: 16px;
+}
+.expeditions-root .trail-day-overline::before {
+  content: "";
+  width: 34px;
+  height: 0.5px;
+  background: rgba(246, 198, 127, 0.85);
+}
+.expeditions-root .trail-day-title {
+  font-family: "Gambarino", Georgia, serif;
+  font-size: clamp(32px, 3.2vw, 52px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+  color: #000;
+  margin-bottom: 16px;
+}
+.expeditions-root .trail-day-title .dot {
+  color: var(--brasa);
+}
+.expeditions-root .trail-day-desc {
+  font-family: "Gambarino", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(14px, 1.1vw, 16px);
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+  color: rgba(26, 38, 56, 0.72);
+  max-width: 480px;
+}
+.expeditions-root .trail-bottom {
+  padding: 20px 60px 24px;
+  border-top: 0.5px solid rgba(26, 38, 56, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+}
+.expeditions-root .trail-meta-strip {
+  margin-top: 20px;
+  border-top: 0.5px solid rgba(26, 38, 56, 0.08);
+  flex-shrink: 0;
+}
+.expeditions-root .trail-meta-cell {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 11px 0;
+  border-bottom: 0.5px solid rgba(26, 38, 56, 0.07);
+}
+.expeditions-root .trail-meta-label {
+  font-family: "Khand", sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(26, 38, 56, 0.4);
+}
+.expeditions-root .trail-meta-value {
+  font-family: "Gambarino", Georgia, serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--noite-deep);
+  line-height: 1;
+}
+.expeditions-root .trail-meta-value .unit {
+  font-family: "Satoshi", sans-serif;
+  font-size: 10px;
+  color: rgba(26, 38, 56, 0.4);
+  margin-left: 3px;
+  letter-spacing: 0;
+}
+.expeditions-root .trail-cta-row {
+  display: block;
+}
+.expeditions-root .trail-price {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.expeditions-root .trail-price-label {
+  font-family: "Khand", sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(26, 38, 56, 0.4);
+}
+.expeditions-root .trail-price-value {
+  font-family: "Gambarino", Georgia, serif;
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: var(--noite-deep);
+  line-height: 1;
+}
+.expeditions-root .trail-price-value .per {
+  font-family: "Satoshi", sans-serif;
+  font-size: 11px;
+  color: rgba(26, 38, 56, 0.45);
+  margin-left: 4px;
+  letter-spacing: 0;
+}
+.expeditions-root .trail-reserve {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: var(--brasa);
+  color: var(--papel);
+  padding: 14px 20px;
+  font-family: "Satoshi", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s;
+  white-space: nowrap;
+}
+.expeditions-root .trail-reserve::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 65%
+  );
+  background-size: 250% 100%;
+  background-position: 200% center;
+  transition: background-position 0.7s ease;
+}
+.expeditions-root .trail-reserve:hover {
+  background: #a02408;
+  letter-spacing: 0.22em;
+  box-shadow: 0 6px 24px rgba(192, 43, 10, 0.45);
+}
+.expeditions-root .trail-reserve:hover::after {
+  background-position: -200% center;
+}
+
+/* ── RIGHT column — video fixed ── */
+.expeditions-root .trail-right-col {
+  width: 42%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  order: 2;
+}
+.expeditions-root .trail-right {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  min-height: 360px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.expeditions-root .trail-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.18);
+  transform-origin: center center;
+}
+.expeditions-root .trail-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to left,
+    transparent 55%,
+    rgba(250, 248, 244, 0.55)
+  );
+  pointer-events: none;
+}
+.expeditions-root .trail-progress {
+  position: absolute;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 4;
+}
+.expeditions-root .trail-progress-dot {
+  width: 6px;
+  height: 32px;
+  background: rgba(26, 38, 56, 0.2);
+  border-radius: 3px;
+  transition: background 0.4s ease, height 0.4s ease;
+}
+.expeditions-root .trail-progress-dot.active {
+  background: var(--lanterna);
+  height: 48px;
+}
+
+/* Price cell highlight */
+.expeditions-root .trail-meta-cell--price .trail-meta-value {
+  font-size: 17px;
+  color: var(--brasa);
+}
+
+/* ══════════════════════════════════════════════
+   PAGE HERO
+   ══════════════════════════════════════════════ */
+.expeditions-root .page-hero {
+  padding: 80px 40px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.expeditions-root .page-hero-overline {
+  font-family: "Khand", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: rgba(246, 198, 127, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.expeditions-root .page-hero-overline::before {
+  content: "";
+  width: 34px;
+  height: 0.5px;
+  background: rgba(246, 198, 127, 0.5);
+}
+.expeditions-root .page-hero-title {
+  font-family: "Gambarino", Georgia, serif;
+  font-size: clamp(64px, 9vw, 140px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.025em;
+  color: #000;
+  margin-bottom: 28px;
+}
+.expeditions-root .page-hero-title .dot {
+  color: var(--brasa);
+}
+.expeditions-root .page-hero-desc {
+  font-family: "Gambarino", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(18px, 1.6vw, 24px);
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  color: rgba(26, 38, 56, 0.6);
+  max-width: 560px;
+}
+
+/* ══════════════════════════════════════════════
+   VIDEO PLAY BUTTON
+   ══════════════════════════════════════════════ */
+.expeditions-root .video-play-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(250, 248, 244, 0.92);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s;
+  box-shadow: 0 2px 12px rgba(26, 38, 56, 0.2);
+}
+.expeditions-root .video-play-btn:hover {
+  background: var(--papel);
+  transform: scale(1.1);
+  box-shadow: 0 4px 20px rgba(26, 38, 56, 0.3);
+}
+.expeditions-root .video-play-btn svg {
+  width: 18px;
+  height: 18px;
+  color: var(--noite-deep);
+  transition: transform 0.2s;
+}
+.expeditions-root .video-play-btn:hover svg {
+  transform: scale(1.1);
+}
+.expeditions-root .video-play-btn .icon-pause {
+  display: none;
+}
+.expeditions-root .video-play-btn.playing .icon-play {
+  display: none;
+}
+.expeditions-root .video-play-btn.playing .icon-pause {
+  display: block;
+}
+
+/* ══════════════════════════════════════════════
+   DAY NAVIGATION BUTTONS
+   ══════════════════════════════════════════════ */
+.expeditions-root .trail-day-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  margin-top: auto;
+}
+.expeditions-root .trail-day-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(26, 38, 56, 0.2);
+  background: transparent;
+  color: var(--noite-deep);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1;
+  transition: background 0.2s, border-color 0.2s, color 0.2s,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  flex-shrink: 0;
+}
+.expeditions-root .trail-day-btn:hover {
+  background: var(--noite-deep);
+  color: var(--papel);
+  border-color: var(--noite-deep);
+  transform: scale(1.08);
+}
+.expeditions-root .trail-day-counter {
+  font-family: "Khand", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(26, 38, 56, 0.45);
+  flex: 1;
+}
+
+/* ══════════════════════════════════════════════
+   FADE-IN SCROLL ANIMATION
+   ══════════════════════════════════════════════ */
+.expeditions-root .trail-block {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.expeditions-root .trail-block.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════════
+   CLOSING CTA — "Still deciding? Talk to a guide."
+   ══════════════════════════════════════════════ */
+.expeditions-root .closing-cta {
+  position: relative;
+  min-height: 60vh;
+  margin-top: 40px;
+  padding: 120px 52px 100px;
+  background: linear-gradient(
+      rgba(250, 248, 244, 0.82) 0%,
+      rgba(250, 248, 244, 0.78) 100%
+    ),
+    url("/images/Three_wilderness_hiking.jpg") center 30% / cover no-repeat;
+  border-top-left-radius: 36px;
+  border-top-right-radius: 36px;
+  box-shadow: 0 -30px 80px rgba(26, 38, 56, 0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.expeditions-root .closing-cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.5px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(192, 43, 10, 0.4) 30%,
+    rgba(192, 43, 10, 0.4) 70%,
+    transparent 100%
+  );
+}
+.expeditions-root .closing-cta-overline {
+  font-family: "Khand", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: rgba(246, 198, 127, 0.6);
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 1.2s ease,
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.expeditions-root .closing-cta.revealed .closing-cta-overline {
+  opacity: 1;
+  transform: none;
+}
+.expeditions-root .closing-cta-quote {
+  font-family: "Gambarino", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(44px, 6vw, 88px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--noite-deep);
+  margin-bottom: 32px;
+  max-width: 900px;
+}
+.expeditions-root .closing-cta-quote .dot {
+  color: var(--brasa);
+  font-style: normal;
+}
+.expeditions-root .closing-cta-sub {
+  font-family: "Gambarino", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(18px, 1.6vw, 22px);
+  line-height: 1.5;
+  color: rgba(26, 38, 56, 0.6);
+  margin-bottom: 48px;
+  max-width: 580px;
+}
+.expeditions-root .closing-cta-quote,
+.expeditions-root .closing-cta-sub {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.expeditions-root .closing-cta.revealed .closing-cta-quote {
+  transition-delay: 0.15s;
+  opacity: 1;
+  transform: none;
+}
+.expeditions-root .closing-cta.revealed .closing-cta-sub {
+  transition-delay: 0.35s;
+  opacity: 1;
+  transform: none;
+}
+.expeditions-root .closing-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  color: var(--noite-deep);
+  padding: 18px 36px;
+  border: 0.5px solid rgba(26, 38, 56, 0.3);
+  border-radius: 999px;
+  font-family: "Satoshi", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0;
+  transform: translateY(16px);
+}
+.expeditions-root .closing-cta.revealed .closing-cta-btn {
+  transition-delay: 0.55s;
+  opacity: 1;
+  transform: none;
+}
+.expeditions-root .closing-cta-btn:hover {
+  background: var(--noite-deep);
+  color: var(--papel);
+  border-color: var(--noite-deep);
+  transform: translateY(-2px);
+}
+.expeditions-root .closing-cta-btn-arrow {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.expeditions-root .closing-cta-btn:hover .closing-cta-btn-arrow {
+  transform: translateX(4px);
+}
+
+/* ══════════════════════════════════════════════
+   EXPEDITIONS FOOTER (route-scoped via .expeditions-footer)
+   ══════════════════════════════════════════════ */
+.expeditions-footer {
+  background: var(--noite-deep);
+  color: var(--papel);
+  padding: 80px 52px 0;
+  margin-top: 0;
+}
+.expeditions-footer .footer-main {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 60px;
+  border-bottom: 0.5px solid rgba(250, 248, 244, 0.08);
+}
+.expeditions-footer .footer-brand-logo {
+  font-family: "Gambarino", Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--papel);
+  margin-bottom: 16px;
+  display: block;
+  text-decoration: none;
+}
+.expeditions-footer .footer-brand-logo span {
+  color: var(--brasa);
+}
+.expeditions-footer .footer-brand-tagline {
+  font-family: "Gambarino", Georgia, serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(250, 248, 244, 0.55);
+  max-width: 240px;
+}
+.expeditions-footer .footer-col-label {
+  font-family: "Khand", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 244, 0.4);
+  margin-bottom: 20px;
+  display: block;
+}
+.expeditions-footer .footer-col-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+}
+.expeditions-footer .footer-col-links a {
+  font-family: "Satoshi", sans-serif;
+  font-size: 14px;
+  color: rgba(250, 248, 244, 0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.expeditions-footer .footer-col-links a:hover {
+  color: var(--papel);
+}
+.expeditions-footer .footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0 0;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.expeditions-footer .footer-coord-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Khand", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(250, 248, 244, 0.35);
+}
+.expeditions-footer .footer-coord-group .city {
+  color: rgba(246, 198, 127, 0.45);
+}
+.expeditions-footer .footer-copyright {
+  font-family: "Satoshi", sans-serif;
+  font-size: 11px;
+  color: rgba(250, 248, 244, 0.3);
+}
+.expeditions-footer .footer-legal-links {
+  display: flex;
+  gap: 20px;
+}
+.expeditions-footer .footer-legal-links a {
+  font-family: "Satoshi", sans-serif;
+  font-size: 11px;
+  color: rgba(250, 248, 244, 0.3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.expeditions-footer .footer-legal-links a:hover {
+  color: rgba(250, 248, 244, 0.7);
+}
+.expeditions-footer .footer-wordmark {
+  position: relative;
+  width: 100%;
+  height: clamp(140px, 18vw, 280px);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-top: 0;
+}
+.expeditions-footer .footer-wordmark span {
+  font-family: "Gambarino", Georgia, serif;
+  font-size: clamp(120px, 19vw, 280px);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  line-height: 0.82;
+  color: rgba(250, 248, 244, 0.05);
+  white-space: nowrap;
+  display: block;
+  transform: translateY(80%);
+  will-change: transform;
+  user-select: none;
+}

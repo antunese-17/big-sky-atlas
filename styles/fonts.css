@@ -1,0 +1,17 @@
+/*
+ * Gambarino (display) and Satoshi (body) are distributed by Fontshare.
+ * Neither has a first-party npm package. Until they are self-hosted as
+ * woff2 assets under /public/fonts, load them from the Fontshare CDN by
+ * adding a <link> in app/layout.tsx <head>:
+ *
+ *   <link
+ *     rel="stylesheet"
+ *     href="https://api.fontshare.com/v2/css?f[]=gambarino@400,500&f[]=satoshi@400,500,700&display=swap"
+ *   />
+ *
+ * Fallbacks (already active via tailwind.config.ts):
+ *   display  -> Fraunces Variable (loaded via @fontsource-variable/fraunces)
+ *   sans     -> system sans stack
+ *
+ * Khand and JetBrains Mono are loaded via @fontsource on the JS side.
+ */

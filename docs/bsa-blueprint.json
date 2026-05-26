@@ -1,0 +1,998 @@
+{
+  "project": {
+    "name": "Big Sky Atlas",
+    "tagline": "Expeditions in the Northern Rockies",
+    "client_type": "Fictional tourism agency (EOSYS portfolio — for sale)",
+    "market": "Luxury adventure travel",
+    "territory": "Montana & Wyoming Rockies",
+    "language": "en-US",
+    "positioning": "Summer-dominant, awwwards-tier, boutique catalog",
+    "date": "2026-04-18",
+    "phase": 6,
+    "phase_name": "Execution — surgical prompts for Claude Code",
+    "visual_direction": "B — Cinematic Backcountry (daylight) — approved Fase 5"
+  },
+  "objective": {
+    "primary": "Convert visitor into a WhatsApp or email conversation to reserve one of the hero expeditions",
+    "secondary": "Establish Big Sky Atlas as the most distinct premium Rockies adventure agency in the market",
+    "non_goal": "Ecommerce / online booking — conversion is always human-led"
+  },
+  "audience_mix": [
+    {
+      "id": "couples-premium",
+      "age": "35-55",
+      "profile": "Honeymoon, anniversary, milestone experience as gift",
+      "priority_packages": [
+        "teton-traverse",
+        "beartooth-summits",
+        "bighorn-sanctuary"
+      ]
+    },
+    {
+      "id": "experienced-adventurers",
+      "age": "28-50",
+      "profile": "Seeking real technical challenge and credibility",
+      "priority_packages": [
+        "wind-river-high-route",
+        "teton-traverse",
+        "beartooth-summits"
+      ]
+    },
+    {
+      "id": "high-end-families",
+      "age": "10+ kids",
+      "profile": "Balance of comfort and adventure, multi-gen",
+      "priority_packages": [
+        "bighorn-sanctuary",
+        "snake-river-whitewater"
+      ]
+    },
+    {
+      "id": "corporate-groups",
+      "age": "30-55",
+      "profile": "Incentive trips, leadership offsites, team expeditions",
+      "priority_packages": [
+        "snake-river-whitewater",
+        "bighorn-sanctuary"
+      ]
+    }
+  ],
+  "design_tokens": {
+    "colors": {
+      "papel": "#FAF8F4",
+      "carvao": "#141414",
+      "granito": "#A8ADA7",
+      "pinheiro": "#2A3820",
+      "musgo": "#4F6305",
+      "noite_alpina": "#1A2638",
+      "brasa": "#C02B0A",
+      "lanterna": "#F6C67F",
+      "alerta": "#B32025"
+    },
+    "fonts": {
+      "display": "Gambarino (Fontshare) — free commercial",
+      "body": "Satoshi (Fontshare) — free commercial",
+      "technical": "Khand (Google Fonts / Fontshare) — free commercial",
+      "mono": "JetBrains Mono (JetBrains) — free commercial"
+    },
+    "type_scale_desktop": {
+      "display_hero": "clamp(96px, 14vw, 200px) / 0.92 / -0.035em / Gambarino 400",
+      "display_xl": "clamp(72px, 10vw, 140px) / 0.95 / -0.03em / Gambarino 400",
+      "display_l": "clamp(56px, 7vw, 96px) / 1.0 / -0.02em / Gambarino 400",
+      "h1": "56px / 1.05 / -0.02em / Gambarino 500",
+      "h2": "40px / 1.1 / -0.01em / Gambarino 500",
+      "h3": "28px / 1.25 / 0em / Satoshi 600",
+      "body_large": "20px / 1.6 / 0em / Satoshi 400",
+      "body": "16px / 1.7 / 0em / Satoshi 400",
+      "overline": "12px / 1 / 0.22em / Khand 500 uppercase",
+      "mono": "13px / 1.5 / 0.04em / JetBrains Mono 400"
+    },
+    "motion": {
+      "ease_cinematic": "cubic-bezier(0.75, 0, 0.25, 1)",
+      "ease_natural": "cubic-bezier(0.165, 0.84, 0.44, 1)",
+      "ease_precise": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "dur_micro": "200ms",
+      "dur_fast": "400ms",
+      "dur_smooth": "600ms",
+      "dur_hero": "1000ms",
+      "dur_page": "1200ms"
+    },
+    "spacing": {
+      "sm": "75px",
+      "md": "96px",
+      "lg": "168px"
+    },
+    "radius": {
+      "sm": "4px",
+      "md": "8px",
+      "lg": "16px",
+      "xl": "32px",
+      "pill": "9999px",
+      "asymmetric": "24px 0 24px 0"
+    },
+    "shadows": {
+      "card": "0 1px 3px rgba(0,0,0,0.05), 0 12px 24px -4px rgba(0,0,0,0.08), 0 40px 80px -12px rgba(0,0,0,0.12)",
+      "hero": "0 40px 80px -10px rgba(0,0,0,0.35)",
+      "glow": "0 0 60px 0 rgba(20,20,20,0.15)"
+    }
+  },
+  "unique_elements": [
+    {
+      "id": "display-monumental",
+      "desc": "Type scale 160-200px on hero — unprecedented in premium travel niche"
+    },
+    {
+      "id": "3d-trail-map",
+      "desc": "Full-bleed Mapbox GL JS v2 with real terrain, scroll-driven route reveal, POI overlays, elevation graph"
+    },
+    {
+      "id": "technical-overline",
+      "desc": "Khand condensed 12px overline with expedition metadata persistent across all pages"
+    },
+    {
+      "id": "compass-cursor",
+      "desc": "Custom SVG cursor that rotates subtly based on scroll position and active section"
+    },
+    {
+      "id": "trail-descent-transitions",
+      "desc": "1.2s parallax page transitions — images reveal as if descending a route"
+    },
+    {
+      "id": "paper-night-alternation",
+      "desc": "Daylight-dominant (70% papel). Noite-alpina reserved for 3 strategic moments: Ethos opening manifesto, Trail 3D map inside expedition template, Master map on home. Transitions between modes are 1000ms crossfades."
+    }
+  ],
+  "tech_stack": {
+    "framework": "Next.js 15 (App Router, RSC where possible)",
+    "smooth_scroll": "Lenis",
+    "scroll_animation": "GSAP + ScrollTrigger",
+    "3d_terrain": "Mapbox GL JS v2 (terrain source + scroll-driven camera)",
+    "ambient_webgl": "Three.js (noise background for noite-alpina sections)",
+    "micro_interactions": "Framer Motion",
+    "carousels": "Swiper.js 11",
+    "lightbox": "PhotoSwipe v5",
+    "forms": "React Hook Form + Zod + Resend (email) + WhatsApp Business deeplink",
+    "cms": "Static MDX (no CMS — boutique fixed catalog)",
+    "hosting": "Vercel",
+    "analytics": "Plausible (primary) + GA4 (secondary, if needed)"
+  },
+  "expeditions": [
+    {
+      "id": "teton-traverse",
+      "slug": "teton-traverse",
+      "number": "04",
+      "name": "Teton Traverse",
+      "subtitle": "Seven days across granite, three nights above timberline",
+      "region": "Grand Teton NP, Wyoming",
+      "duration_days": 7,
+      "intensity": 4,
+      "tech_grade": "4/5",
+      "best_months": [
+        "Jul",
+        "Aug"
+      ],
+      "elevation_max_m": 3842,
+      "elevation_max_ft": 12605,
+      "price_from_usd": 11800,
+      "group_size_max": 6,
+      "ideal_for": [
+        "experienced-adventurers",
+        "couples-premium"
+      ],
+      "highlights": [
+        "Technical ridge walking",
+        "Three alpine camps",
+        "Sunrise from 12,000ft",
+        "Optional summit day"
+      ],
+      "rationale": "Flagship — positions the agency's technical credibility"
+    },
+    {
+      "id": "wind-river-high-route",
+      "slug": "wind-river-high-route",
+      "number": "03",
+      "name": "Wind River High Route",
+      "subtitle": "Nine days off the map",
+      "region": "Wind River Range, Wyoming",
+      "duration_days": 9,
+      "intensity": 5,
+      "tech_grade": "3/5",
+      "best_months": [
+        "Jul",
+        "Aug"
+      ],
+      "elevation_max_m": 3950,
+      "elevation_max_ft": 12960,
+      "price_from_usd": 14500,
+      "group_size_max": 5,
+      "ideal_for": [
+        "experienced-adventurers"
+      ],
+      "highlights": [
+        "True backcountry (no resupply)",
+        "Over 80km of Continental Divide",
+        "Glacier crossings",
+        "Wildlife: bighorn, grizzly signs"
+      ],
+      "rationale": "Hardcore badge — for the guest who wants to earn it"
+    },
+    {
+      "id": "beartooth-summits",
+      "slug": "beartooth-summits",
+      "number": "02",
+      "name": "Beartooth Summits",
+      "subtitle": "Six days on the plateau",
+      "region": "Beartooth Plateau, Montana",
+      "duration_days": 6,
+      "intensity": 4,
+      "tech_grade": "3/5",
+      "best_months": [
+        "Jul",
+        "Aug",
+        "Sep"
+      ],
+      "elevation_max_m": 3750,
+      "elevation_max_ft": 12300,
+      "price_from_usd": 9600,
+      "group_size_max": 8,
+      "ideal_for": [
+        "couples-premium",
+        "experienced-adventurers"
+      ],
+      "highlights": [
+        "Alpine lakes at sunrise",
+        "Three non-technical summits",
+        "Wildflower season",
+        "Montana's roof"
+      ],
+      "rationale": "Accessible challenge — most photogenic for website hero"
+    },
+    {
+      "id": "snake-river-whitewater",
+      "slug": "snake-river-whitewater",
+      "number": "05",
+      "name": "Snake River Whitewater",
+      "subtitle": "Four days of moving water",
+      "region": "Snake River, Wyoming (Jackson to Alpine)",
+      "duration_days": 4,
+      "intensity": 3,
+      "tech_grade": "3/5",
+      "best_months": [
+        "Jun",
+        "Jul",
+        "Aug"
+      ],
+      "elevation_max_m": 2100,
+      "elevation_max_ft": 6890,
+      "price_from_usd": 5400,
+      "group_size_max": 10,
+      "ideal_for": [
+        "high-end-families",
+        "corporate-groups"
+      ],
+      "highlights": [
+        "Class III-IV whitewater",
+        "Riverside camping",
+        "Historic cowboy territory",
+        "Bald eagles, moose"
+      ],
+      "rationale": "Entry point — families, corporate incentives, groups"
+    },
+    {
+      "id": "bighorn-sanctuary",
+      "slug": "bighorn-sanctuary",
+      "number": "01",
+      "name": "Bighorn Sanctuary",
+      "subtitle": "Five days of slow water",
+      "region": "Bighorn Mountains, Wyoming",
+      "duration_days": 5,
+      "intensity": 2,
+      "tech_grade": "2/5",
+      "best_months": [
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep"
+      ],
+      "elevation_max_m": 2800,
+      "elevation_max_ft": 9190,
+      "price_from_usd": 7200,
+      "group_size_max": 8,
+      "ideal_for": [
+        "couples-premium",
+        "high-end-families"
+      ],
+      "highlights": [
+        "Blue Ribbon trout streams",
+        "Contemplative high meadows",
+        "Dark sky stargazing",
+        "Lodge-based nights"
+      ],
+      "rationale": "Contemplative luxury — the gateway expedition"
+    }
+  ],
+  "pages": [
+    {
+      "id": "home",
+      "path": "/",
+      "seo": {
+        "title_tag": "Big Sky Atlas — Expeditions in the Northern Rockies",
+        "meta_description": "A boutique agency running five technical expeditions across Montana and Wyoming. Small groups. Local guides. No shortcuts.",
+        "h1": "Expeditions in the Northern Rockies",
+        "og_image": "og/home.jpg"
+      },
+      "page_entry_motion": "1200ms cinematic — hero video fades from 0 → 1 while overline and display text split-reveal in stagger",
+      "sections": [
+        {
+          "id": "hero-manifesto",
+          "objective": "First impact — establish territory, tone, and scale in 3 seconds",
+          "components": [
+            "Full-bleed autoplay drone video (muted, looped, poster image)",
+            "Display headline 200px — split into 2 lines, staggered reveal",
+            "Technical overline — persistent brand signature",
+            "Scroll-down cue with compass micro-rotation",
+            "Minimal nav overlaid — transparent on hero, solid on scroll"
+          ],
+          "differentiator": "200px display on a tourism site — first chromatic choc",
+          "motion": {
+            "entry": "GSAP split-text stagger 80ms per word",
+            "scroll": "Video parallax slight"
+          },
+          "media": {
+            "video": "drone-aerial-teton-ridge.mp4 (15s loop, 4K, H.265, 4MB max)",
+            "poster": "hero-poster-teton.jpg (4K)"
+          }
+        },
+        {
+          "id": "positioning-statement",
+          "objective": "Explain what Big Sky Atlas is in 3-4 lines without vendor-speak",
+          "components": [
+            "Display 120px manifesto across 3 lines",
+            "Body supporting copy 20px",
+            "No CTA"
+          ],
+          "differentiator": "Typography is the design — almost no visual chrome",
+          "motion": {
+            "entry": "ScrollTrigger reveal — each line fades as it enters viewport"
+          },
+          "media": {
+            "background": "papel (solid — transition to noite-alpina below)"
+          }
+        },
+        {
+          "id": "featured-expeditions",
+          "objective": "Present 5 hero expeditions in a horizontally-scrollable editorial format",
+          "components": [
+            "5 cards in horizontal scroll (snap, drag, arrow controls)",
+            "Each card: cover image (vertical 3:4), expedition number overlay, name in Gambarino 48px, overline with duration/intensity/region, short pull quote",
+            "Progress indicator at bottom — shows '01 / 05 · 04 / 05'"
+          ],
+          "differentiator": "Horizontal snap scroll + asymmetric cards — KOTA-inspired but editorial",
+          "motion": {
+            "scroll": "Horizontal pin + drag · Snap between cards · Cursor custom becomes 'drag' indicator"
+          },
+          "media": {
+            "images_per_card": "1 cover image 4K vertical 3:4 ratio"
+          }
+        },
+        {
+          "id": "master-map-teaser",
+          "objective": "Show the territory visually — all 5 routes on Montana/Wyoming terrain",
+          "components": [
+            "Mapbox GL JS v2 terrain view (zoom 7, pitch 45°)",
+            "5 route lines color-coded by expedition (musgo for contemplative, pinheiro for technical, brasa for whitewater)",
+            "Hover = route highlights + tooltip with expedition name",
+            "CTA overlay 'See all expeditions →'"
+          ],
+          "differentiator": "This IS the killer moment — first time anyone sees the 3D map",
+          "motion": {
+            "entry": "Camera flies in from far away to final pitch on scroll-in · Routes draw on with staggered 400ms dashoffset animation"
+          },
+          "media": {
+            "mapbox_style": "custom satellite + terrain exaggeration 1.5 + atmospheric fog"
+          }
+        },
+        {
+          "id": "ethos-teaser",
+          "objective": "Bridge to the Our Ethos page — one strong pull quote",
+          "components": [
+            "Pull quote 56px italic Gambarino",
+            "Attribution in Khand overline",
+            "CTA 'Read our ethos' → /ethos"
+          ],
+          "differentiator": "Contemplative pause between two energetic sections",
+          "motion": {
+            "entry": "Type split-char reveal on scroll-in, 40ms per char"
+          },
+          "media": {
+            "background": "noite-alpina with subtle Three.js noise texture"
+          }
+        },
+        {
+          "id": "social-proof-band",
+          "objective": "Build credibility with testimonials and press mentions",
+          "components": [
+            "3 testimonial cards horizontal — guest photo, quote, name/origin/expedition",
+            "Below: logo band of fictional press — 'As featured in: Condé Nast Traveler · Travel+Leisure · Outside · Nat Geo'"
+          ],
+          "differentiator": "Cards are asymmetric — vary in height and offset",
+          "motion": {
+            "entry": "Stagger card entry 200ms apart"
+          },
+          "media": {
+            "images": "3 guest portraits (Nano Banana Pro)"
+          }
+        },
+        {
+          "id": "closing-cta",
+          "objective": "Convert to contact",
+          "components": [
+            "Headline 'Ready to meet the mountains?' 96px",
+            "WhatsApp button (primary, brasa)",
+            "Email form inline (single field)"
+          ],
+          "differentiator": "One of two CTAs on the page — concentrated intent",
+          "motion": {
+            "entry": "Fade-up on scroll-in",
+            "page_exit": "Trail-descent transition to /contact if clicked"
+          },
+          "media": {
+            "background": "papel with subtle Three.js ambient"
+          }
+        },
+        {
+          "id": "footer",
+          "objective": "Legal, nav, brand signature",
+          "components": [
+            "4 columns: Expeditions · About · Contact · Follow",
+            "Address: Big Sky Atlas HQ — 214 W Main, Bozeman MT 59715 (fictional)",
+            "Certifications row: Leave No Trace · AMGA · Relais & Châteaux equivalent (fictional)",
+            "Copyright + credits"
+          ],
+          "motion": {},
+          "media": {}
+        }
+      ]
+    },
+    {
+      "id": "experiences",
+      "path": "/expeditions",
+      "seo": {
+        "title_tag": "Expeditions · Big Sky Atlas",
+        "meta_description": "Five technical expeditions across Montana and Wyoming. From four-day river runs to nine-day traverses. Small groups, local guides.",
+        "h1": "Expeditions",
+        "og_image": "og/expeditions.jpg"
+      },
+      "page_entry_motion": "1200ms trail-descent from Home",
+      "sections": [
+        {
+          "id": "expeditions-header",
+          "objective": "Establish page + present filter system",
+          "components": [
+            "H1 160px 'Expeditions'",
+            "Overline 'Five ways into the Northern Rockies'",
+            "Filter bar (see next section)"
+          ],
+          "differentiator": "Filters are inline with the title, not hidden",
+          "motion": {
+            "entry": "Split-text reveal for H1"
+          },
+          "media": {}
+        },
+        {
+          "id": "filter-bar",
+          "objective": "Allow quick filtering without leaving the page",
+          "components": [
+            "Intensity: 1-5 pill toggles",
+            "Duration: '3-5 days' / '6-8 days' / '9+ days' toggles",
+            "Profile: 'Couples' / 'Adventurers' / 'Families' / 'Groups' toggles",
+            "Active filter count + reset button"
+          ],
+          "differentiator": "Filters change cursor form on hover — compass pointing at option",
+          "motion": {
+            "interaction": "Cards animate in/out with 400ms ease-natural, no layout shift"
+          }
+        },
+        {
+          "id": "expeditions-grid",
+          "objective": "Show all 5 expeditions in editorial grid",
+          "components": [
+            "Asymmetric grid (not uniform) — some cards larger, some offset",
+            "Each card: cover 4K, number, name Gambarino, overline metadata, price 'From $X', 'View expedition →' CTA"
+          ],
+          "differentiator": "Cards on hover: image zoom 1.05x + shadow-hero applied + compass cursor highlights",
+          "motion": {
+            "entry": "Stagger reveal 150ms apart as user scrolls",
+            "hover": "400ms ease-natural"
+          },
+          "media": {
+            "images": "5 expedition cover images"
+          }
+        },
+        {
+          "id": "master-map-full",
+          "objective": "Full 3D map of all 5 routes — deeper than home teaser",
+          "components": [
+            "Full-height Mapbox GL JS v2 with terrain + atmosphere",
+            "All 5 routes visible with legend",
+            "Hover route = camera flies to its bounds + side panel with expedition summary + CTA",
+            "Elevation ticker shows real-time elev as cursor moves along a route"
+          ],
+          "differentiator": "Core moment of the experiences page — prolonged exploration encouraged",
+          "motion": {
+            "scroll": "Pinned for extended duration",
+            "interaction": "Camera 1200ms cinematic flights"
+          },
+          "media": {
+            "mapbox_style": "same as home"
+          }
+        },
+        {
+          "id": "custom-cta",
+          "objective": "Catch guests who don't fit the boutique catalog",
+          "components": [
+            "Headline 'Not quite what you had in mind?' 72px",
+            "Body: 'Custom expeditions designed around your group'",
+            "CTA → /contact"
+          ],
+          "differentiator": "Contrasts the boutique concept with openness",
+          "motion": {
+            "entry": "Fade-up"
+          },
+          "media": {
+            "background": "noite-alpina"
+          }
+        }
+      ]
+    },
+    {
+      "id": "expedition-template",
+      "path": "/expeditions/[slug]",
+      "seo_template": {
+        "title_tag": "{name} · {duration_days} days in {region} · Big Sky Atlas",
+        "meta_description": "{subtitle}. {highlights[0]}, {highlights[1]}, {highlights[2]}. From ${price_from_usd} · Next departure {next_departure}.",
+        "h1": "{name}"
+      },
+      "page_entry_motion": "1200ms trail-descent from /expeditions",
+      "sections": [
+        {
+          "id": "expedition-hero",
+          "objective": "Cinematic first impression of THIS specific expedition",
+          "components": [
+            "Full-bleed drone video of the specific route",
+            "Expedition number 'EXPEDITION 04' in Khand",
+            "Name in Gambarino 180px",
+            "Subtitle in italic 40px",
+            "Overline strip: '7 DAYS · WYOMING · INTENSITY 4/5 · FROM $11,800'"
+          ],
+          "differentiator": "Every expedition gets the same treatment — it's the heroes, not the agency, that speak",
+          "motion": {
+            "entry": "Video fade + title split-reveal"
+          },
+          "media": {
+            "video": "expedition-specific drone 20s loop 4K",
+            "poster": "4K still"
+          }
+        },
+        {
+          "id": "the-route-3d-map",
+          "objective": "THE killer moment — visitor literally walks the trail",
+          "components": [
+            "Full-bleed Mapbox GL JS v2 with real terrain of the route region",
+            "Scroll-driven camera that follows the trail from start to finish",
+            "POIs appear as user scrolls — trailhead, camp sites, summit, landmarks",
+            "Each POI: small card with image + overline '3,842m · Day 4 · Camp 3'",
+            "Side panel (sticky): elevation graph in real-time + total gain/loss counter",
+            "'Explore the full map ↗' CTA opens expanded view"
+          ],
+          "differentiator": "No other tourism site in the territory has this — primary reason for return visits",
+          "motion": {
+            "scroll": "Pinned section — camera flies along route at 1200ms per segment",
+            "poi_reveal": "Scale from 0 to 1 with ease-natural",
+            "elevation_graph": "Dot moves with scroll, graph shape is always visible"
+          },
+          "media": {
+            "mapbox_style": "custom per-expedition with specific terrain exaggeration",
+            "poi_images": "6-8 per expedition, generated by Nano Banana Pro",
+            "route_data": "GeoJSON with elevation profile (fictional but plausible)"
+          }
+        },
+        {
+          "id": "day-by-day",
+          "objective": "Editorial narrative of the itinerary, day by day",
+          "components": [
+            "Vertical timeline — one row per day",
+            "Each row: 'DAY 01' overline + day title in Gambarino 48px + narrative body 560px max + thumbnail 1200px wide",
+            "Alternating alignment (odd days left, even days right) for reading rhythm"
+          ],
+          "differentiator": "Reads like a magazine article, not an itinerary table",
+          "motion": {
+            "entry": "Each day reveals on scroll with 600ms ease-cinematic"
+          },
+          "media": {
+            "images": "1 image per day — 7 to 9 per expedition"
+          }
+        },
+        {
+          "id": "gallery-editorial",
+          "objective": "Immersive photo experience",
+          "components": [
+            "Asymmetric masonry grid",
+            "12-16 photos per expedition",
+            "Click = PhotoSwipe v5 lightbox",
+            "No captions on grid — captions in lightbox"
+          ],
+          "differentiator": "Grid is never uniform — respects image orientation, plays with scale",
+          "motion": {
+            "hover": "Image lifts with shadow-hero",
+            "grid_load": "Progressive reveal stagger"
+          },
+          "media": {
+            "images": "12-16 per expedition, mix of landscape, portrait, detail"
+          }
+        },
+        {
+          "id": "the-guides",
+          "objective": "Humanize the expedition — introduce the team",
+          "components": [
+            "2-3 guide cards",
+            "Each: portrait, name, role, home mountain range, certifications, short quote"
+          ],
+          "differentiator": "Portraits are editorial not corporate — in the field, not headshots",
+          "motion": {
+            "entry": "Fade-up stagger"
+          },
+          "media": {
+            "portraits": "2-3 fictional guide portraits per expedition (can reuse across)"
+          }
+        },
+        {
+          "id": "whats-included",
+          "objective": "Technical breakdown of what's in / what's needed",
+          "components": [
+            "Two-column layout",
+            "Left: 'Included' — list with Khand overline + check icons",
+            "Right: 'What to bring' — list with Khand overline + minus icons",
+            "Bottom row: 'Provided gear' expandable — tents, packs, technical gear"
+          ],
+          "differentiator": "Checklist aesthetic — feels like an expedition prep sheet",
+          "motion": {
+            "entry": "Columns reveal simultaneously"
+          },
+          "media": {}
+        },
+        {
+          "id": "specific-testimonial",
+          "objective": "Proof from someone who did THIS specific expedition",
+          "components": [
+            "Large pull quote 36px italic",
+            "Guest name, origin, date of expedition",
+            "One accompanying editorial photo"
+          ],
+          "differentiator": "Contextual proof beats generic proof",
+          "motion": {
+            "entry": "Type reveal + photo parallax"
+          },
+          "media": {
+            "image": "1 guest-in-context photo"
+          }
+        },
+        {
+          "id": "pricing-availability",
+          "objective": "Technical metadata block — price, dates, spots",
+          "components": [
+            "Price: 'From $11,800 per person' in Gambarino 56px",
+            "Group: 'Maximum 6 guests' with overline",
+            "Upcoming departures: list of 3-5 dates with availability indicator (dots)",
+            "Deposit & cancellation line in body"
+          ],
+          "differentiator": "Dates appear as instrument readings — not marketing",
+          "motion": {
+            "entry": "Number counter animation from 0 to price"
+          },
+          "media": {}
+        },
+        {
+          "id": "reserve-cta",
+          "objective": "Convert to WhatsApp conversation with expedition context",
+          "components": [
+            "Large CTA: 'Reserve this expedition'",
+            "WhatsApp Business deeplink with pre-filled message: 'Hi Big Sky Atlas — I would like to reserve the {name} expedition ({duration_days} days, departing {next_departure}). Please advise availability.'",
+            "Email alternative below",
+            "Response time guarantee: 'Response within 4 hours · Mon-Fri'"
+          ],
+          "differentiator": "Pre-filled WhatsApp = zero friction",
+          "motion": {
+            "hover": "Brasa CTA pulses subtly",
+            "page_exit": "Trail-descent if clicked"
+          },
+          "media": {}
+        }
+      ]
+    },
+    {
+      "id": "our-ethos",
+      "path": "/ethos",
+      "seo": {
+        "title_tag": "Our ethos · Big Sky Atlas",
+        "meta_description": "Small groups, local guides, and a commitment to the mountains that have made us. Here's how we work.",
+        "h1": "Our ethos",
+        "og_image": "og/ethos.jpg"
+      },
+      "page_entry_motion": "1200ms trail-descent",
+      "sections": [
+        {
+          "id": "ethos-opening",
+          "objective": "Set the tone — magazine editorial style",
+          "components": [
+            "Display 240px one-line manifesto: 'The mountains come first.'",
+            "Overline beneath"
+          ],
+          "differentiator": "Largest typography on the site — 240px",
+          "motion": {
+            "entry": "Slow type reveal 1500ms"
+          },
+          "media": {}
+        },
+        {
+          "id": "ethos-story",
+          "objective": "Long-form origin story",
+          "components": [
+            "4-6 editorial paragraphs",
+            "Interspersed with 2 inline images (full-bleed breakouts)",
+            "Drop caps on paragraph 1"
+          ],
+          "differentiator": "Reads like an Outside magazine feature",
+          "motion": {
+            "scroll": "Paragraphs fade in sequentially",
+            "parallax": "Inline images shift slightly"
+          },
+          "media": {
+            "images": "2 atmospheric full-bleed photos"
+          }
+        },
+        {
+          "id": "principles",
+          "objective": "State the non-negotiables",
+          "components": [
+            "4 principles, each as a vertical card",
+            "Each: number '01-04' in Khand, principle name in Gambarino 48px, explanation in body",
+            "Example principles: 'Leave no trace', 'Small groups only', 'Local guides first', 'No shortcuts'"
+          ],
+          "differentiator": "Principles are stated, not sold — no 'we commit to' marketing speak",
+          "motion": {
+            "entry": "Cards reveal in sequence"
+          },
+          "media": {}
+        },
+        {
+          "id": "the-team",
+          "objective": "Show the fictional team at scale",
+          "components": [
+            "Grid of 8-10 team members",
+            "Each: editorial portrait, name, role, home mountain range",
+            "Hover: quote appears over portrait with blur background"
+          ],
+          "differentiator": "Editorial portraits — shot in the field, not in a studio",
+          "motion": {
+            "hover": "Quote overlay fade + blur 400ms"
+          },
+          "media": {
+            "portraits": "8-10 fictional team portraits"
+          }
+        },
+        {
+          "id": "certifications",
+          "objective": "Establish credibility via fictional badges",
+          "components": [
+            "Logo row: 4-6 certification badges — Leave No Trace · AMGA · Nat Geo Unique Lodges (equivalent) · Relais & Châteaux (equivalent) · 1% for the Planet",
+            "Short explanation line beneath"
+          ],
+          "differentiator": "Badges are monochrome — feel like patches on a jacket",
+          "motion": {
+            "entry": "Stagger badge reveal"
+          },
+          "media": {
+            "badges": "6 vector badges (SVG)"
+          }
+        },
+        {
+          "id": "ethos-cta",
+          "objective": "Bridge to contact",
+          "components": [
+            "Headline 'Ready to meet the mountains?' 96px",
+            "CTA → /contact"
+          ],
+          "motion": {
+            "page_exit": "Trail-descent"
+          }
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "path": "/contact",
+      "seo": {
+        "title_tag": "Contact · Big Sky Atlas",
+        "meta_description": "Plan your expedition. WhatsApp and email. Response within 4 hours, Monday to Friday.",
+        "h1": "Let's plan your expedition",
+        "og_image": "og/contact.jpg"
+      },
+      "page_entry_motion": "1200ms trail-descent",
+      "sections": [
+        {
+          "id": "contact-hero",
+          "objective": "Frame the conversation",
+          "components": [
+            "H1 160px 'Let's plan your expedition'",
+            "Overline 'Response within 4 hours · Mon-Fri'"
+          ],
+          "motion": {
+            "entry": "Split-text"
+          }
+        },
+        {
+          "id": "whatsapp-primary",
+          "objective": "Primary contact path",
+          "components": [
+            "Large card — full width on mobile, 2/3 on desktop",
+            "WhatsApp logo (monochrome)",
+            "Text: 'Message us on WhatsApp'",
+            "Subline: 'Tell us which expedition and when — we reply within 4 hours.'",
+            "Click = opens WhatsApp Business deeplink (number: +1 406 555 0142 fictional)"
+          ],
+          "differentiator": "WhatsApp front and center, not buried below form",
+          "motion": {
+            "hover": "Card lifts with shadow-hero + brasa accent activates"
+          },
+          "media": {}
+        },
+        {
+          "id": "contact-form",
+          "objective": "Alternative for non-WhatsApp users",
+          "components": [
+            "Form fields: Name · Email · Expedition of interest (select with 5 options + 'Custom') · Ideal dates · Group size · Message",
+            "Submit sends via Resend to hello@bigskyatlas.co (fictional)",
+            "Success state: 'Received. We'll be in touch within 4 hours.'"
+          ],
+          "differentiator": "Form is secondary visually but functionally robust",
+          "motion": {
+            "submit": "Brasa ring animation on success"
+          }
+        },
+        {
+          "id": "location-block",
+          "objective": "Ground the agency in a real-feeling place",
+          "components": [
+            "Two-column: left text, right small Mapbox map (2D this time, not 3D)",
+            "Address: 'Big Sky Atlas HQ — 214 W Main, Bozeman MT 59715'",
+            "Hours: 'Mon-Fri 08:00 - 18:00 MST · By appointment'",
+            "Note: 'Most of our guides are in the field. For urgent matters, WhatsApp is fastest.'"
+          ],
+          "motion": {
+            "map_load": "Fade-in on scroll"
+          },
+          "media": {
+            "mapbox_style": "monochrome minimal"
+          }
+        },
+        {
+          "id": "faq-quick",
+          "objective": "Resolve common hesitations without a form submission",
+          "components": [
+            "Accordion — 7 questions",
+            "Examples: 'How fit do I need to be?' / 'What's the deposit?' / 'Cancellation policy?' / 'Solo travelers?' / 'Minimum age?' / 'Gear rental?' / 'Weather contingency?'",
+            "Each answer 2-3 lines, no marketing fluff"
+          ],
+          "differentiator": "FAQ written like an expedition briefing, not a marketing FAQ",
+          "motion": {
+            "interaction": "Accordion expand 400ms ease-natural"
+          }
+        }
+      ]
+    }
+  ],
+  "motion_system_global": {
+    "smooth_scroll": {
+      "library": "Lenis",
+      "duration": 1.2,
+      "easing": "ease-natural"
+    },
+    "page_transitions": {
+      "name": "Trail-descent",
+      "duration": "1200ms",
+      "easing": "cubic-bezier(0.75, 0, 0.25, 1)",
+      "description": "Outgoing page shifts 20vh down with fade-out; incoming page enters from top with parallax — evokes descending a trail"
+    },
+    "cursor_custom": {
+      "base": "SVG compass rose 24x24px — center dot + 4 cardinal strokes",
+      "rotation": "Subtle based on scroll velocity (max ±15°)",
+      "hover_link": "Strokes extend slightly (125%)",
+      "hover_cta": "Rose fills with brasa color",
+      "hover_image": "Rose becomes 'view' icon",
+      "hover_drag": "Rose becomes horizontal arrows (for featured carousel)",
+      "disabled_on": "Touch devices, prefers-reduced-motion"
+    },
+    "scroll_triggers": {
+      "primary": "GSAP ScrollTrigger for pinning, timeline anchoring, camera flights",
+      "reveals": "Framer Motion for element entrance (simpler, viewport-based)",
+      "parallax": "GSAP for image parallax backgrounds"
+    },
+    "section_alternation": {
+      "rule": "Daylight-dominant (~70%) with 3 strategic nighttime moments",
+      "modes": {
+        "papel_day": "Default — FAF8F4 background, carvao text, alpenglow accents",
+        "noite_alpina": "Reserved for Ethos opening, Trail 3D map, Master map teaser"
+      },
+      "transition": "1000ms ease-cinematic crossfade between modes",
+      "text_adapts": "Automatic — carvao on papel, papel on noite"
+    },
+    "respects": "prefers-reduced-motion — all animations become instant, 3D map becomes 2D static with POI markers, cursor reverts to default"
+  },
+  "shotlist_nano_banana_pro": {
+    "total_images": "~60 4K images",
+    "style_direction": "Editorial, cinematic, NATURAL DAYLIGHT with preference for golden hour morning and high noon alpine. Shot on Hasselblad X2D medium format look. Muted greens, warm granite tones, fog in valleys, alpenglow on highest peaks. Humans as scale references, not subjects. NO over-processed HDR, NO saturated greens, NO blue-sky-no-clouds, NO fantasy landscapes.",
+    "per_page": {
+      "home": [
+        "Hero poster: Grand Teton ridge at dawn, climber silhouette for scale, 4K 16:9",
+        "5 expedition cover images — vertical 3:4, one per expedition",
+        "Master map fallback (static terrain render)",
+        "3 guest portraits — editorial, in the field, varied backgrounds",
+        "Ethos teaser background — atmospheric wide shot"
+      ],
+      "expedition_pages": [
+        "Per expedition × 5: hero poster, 6-8 POI images, 7-9 day images, 12-16 gallery, 2-3 guide portraits, 1 testimonial photo",
+        "Total per expedition: ~30 images",
+        "Grand total expeditions: ~150 images"
+      ],
+      "ethos": [
+        "1 large editorial portrait for opening",
+        "2 inline atmospheric shots",
+        "8-10 team portraits"
+      ],
+      "contact": [
+        "1 atmospheric hero (minimal)"
+      ]
+    },
+    "prompt_template_shape": {
+      "format": "4K, aspect ratio {16:9 | 3:4 | 1:1}, natural light, shot on Hasselblad X2D medium format, {mood: contemplative | energetic | atmospheric}, palette {#FAF8F4 + #2A3820 + #C02B0A}, humans as scale references, no text overlay, no watermark, no HDR",
+      "never": "avoid: saturated greens, blue-sky-no-clouds, tourists with selfie sticks, neon colors, fantasy landscapes, corporate headshots"
+    }
+  },
+  "shotlist_flow_videos": {
+    "total_videos": "6-8 short loops",
+    "style_direction": "Drone-only, slow movement, FIRST LIGHT atmosphere — sun hitting highest peaks while valleys still hold fog. Slow camera reveal from valley mist up to sunlit summit. 15-20s loops max, 4K, H.265 or AV1.",
+    "list": [
+      "Home hero — aerial Grand Teton ridge at first light, fog in valley, sun on summit, 20s loop",
+      "Expedition 01 Bighorn — aerial meadow dawn, slow pan, dew on grass, 15s",
+      "Expedition 02 Beartooth — aerial plateau lakes at sunrise, mirror surface, 15s",
+      "Expedition 03 Wind River — aerial backcountry ridge morning light, 20s",
+      "Expedition 04 Teton Traverse — aerial ridge descent in alpenglow, 20s",
+      "Expedition 05 Snake River — aerial whitewater morning light, mist rising off water, 15s",
+      "Transitions loop — fog rising from valley at dawn timelapse, 10s"
+    ]
+  },
+  "performance_budgets": {
+    "lcp_target": "< 2.5s",
+    "cls_target": "< 0.1",
+    "tti_target": "< 3.5s",
+    "js_budget_per_page": "< 300KB gzipped (excluding Mapbox which is route-specific lazy-loaded)",
+    "image_format": "AVIF primary, WebP fallback, jpg last resort — progressive loading with LQIP",
+    "video_poster": "WebP at 1920px — video itself lazy-loaded after LCP"
+  },
+  "accessibility_standards": {
+    "target": "WCAG 2.2 AA minimum",
+    "keyboard_navigation": "All interactive elements reachable via Tab",
+    "focus_indicators": "Visible — brasa 2px outline",
+    "color_contrast": "All text ≥ 4.5:1 on its background",
+    "reduced_motion": "Respected — 3D map becomes 2D, cursor default, no parallax",
+    "screen_reader": "Semantic HTML + alt on every image + aria-labels on compass cursor context",
+    "skip_to_content": "Provided on every page"
+  },
+  "next_phases": [
+    "Phase 5 — Two visual directions (A/B) for Eduardo to choose",
+    "Phase 6 — N surgical prompts for Claude Code implementation",
+    "Side track — Image prompt generation for Nano Banana Pro",
+    "Side track — Video brief for Flow"
+  ]
+}

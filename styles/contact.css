@@ -1,0 +1,95 @@
+/* ─── Contact page styles ────────────────────────────────── */
+
+/* Expedition word — slide-swap hover effect */
+.expedition-word {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  cursor: default;
+  vertical-align: top;
+  color: var(--bsa-granito, #a8ada7);
+}
+
+.expedition-word::before,
+.expedition-word::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+
+.expedition-word::before {
+  background-color: var(--brasa, #c02b0a);
+  height: 2px;
+  bottom: 0;
+  transform-origin: 100% 50%;
+  transform: scaleX(0);
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.expedition-word::after {
+  content: attr(data-replace);
+  height: 100%;
+  top: 0;
+  transform-origin: 100% 50%;
+  transform: translate3d(200%, 0, 0);
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+  color: var(--brasa, #c02b0a);
+  font-style: normal;
+}
+
+.expedition-word:hover::before {
+  transform-origin: 0% 50%;
+  transform: scaleX(1);
+}
+
+.expedition-word:hover::after {
+  transform: translate3d(0, 0, 0);
+}
+
+.expedition-word span {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.expedition-word:hover span {
+  transform: translate3d(-200%, 0, 0);
+}
+
+/* ─── Typing reveal ─────────────────────────────────────────── */
+
+/*
+ * The ::after overlay covers the text with the page background color.
+ * JS adds .is-typing + a scoped <style> with exact steps(N) when the
+ * element enters the viewport. After the animation, width collapses to 0.
+ */
+.type-reveal {
+  position: relative;
+  display: inline;
+}
+
+.type-reveal::after {
+  content: '';
+  position: absolute;
+  inset: -2px 0;
+  background-color: var(--papel, #faf8f4);
+  border-left: 2px solid currentColor;
+  width: 100%;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.type-reveal.is-typing::after {
+  opacity: 1;
+  /* animation timing-function injected by JS via scoped <style> */
+}
+
+@keyframes type-uncover {
+  from { width: 100%; }
+  to   { width: 0; border-left-width: 0; }
+}
+
+@keyframes cursor-blink {
+  from, to { border-color: transparent; }
+  50%      { border-color: currentColor; }
+}
