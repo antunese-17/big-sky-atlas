@@ -446,18 +446,18 @@ export default function HomePage() {
         </Link>
         <ul className="nav-links">
           <li>
-            <a href="#expeditions">Expeditions</a>
+            <Link href="/expeditions">Expeditions</Link>
           </li>
           <li>
-            <a href="#philosophy">About</a>
+            <Link href="/ethos">About</Link>
           </li>
           <li>
-            <a href="#testimonials">Stories</a>
+            <Link href="/ethos#guides">Stories</Link>
           </li>
           <li>
-            <a href="#cta" className="nav-cta">
+            <Link href="/contact" className="nav-cta">
               Reserve →
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
@@ -1059,10 +1059,10 @@ export default function HomePage() {
                 </Link>
               </li>
               <li>
-                <a href="#">Wind River Range</a>
+                <Link href="/expeditions/wind-river-high-route">Wind River Range</Link>
               </li>
               <li>
-                <a href="#expeditions">All expeditions →</a>
+                <Link href="/expeditions">All expeditions →</Link>
               </li>
             </ul>
           </div>
@@ -1070,16 +1070,16 @@ export default function HomePage() {
             <span className="footer-col-title">The company</span>
             <ul className="footer-links">
               <li>
-                <a href="#">About BSA</a>
+                <Link href="/ethos">About BSA</Link>
               </li>
               <li>
-                <a href="#">Our guides</a>
+                <Link href="/ethos#guides">Our guides</Link>
               </li>
               <li>
-                <a href="#">Stories from the range</a>
+                <Link href="/ethos">Stories from the range</Link>
               </li>
               <li>
-                <a href="#">Contact</a>
+                <Link href="/contact">Contact</Link>
               </li>
             </ul>
           </div>
@@ -1113,9 +1113,9 @@ export default function HomePage() {
             © 2025 Big Sky Atlas LLC · WY Outfitter #2019-0847
           </span>
           <div className="footer-legal">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Cookies</a>
+            <Link href="/contact">Privacy</Link>
+            <Link href="/contact">Terms</Link>
+            <Link href="/contact">Cookies</Link>
           </div>
         </div>
 
